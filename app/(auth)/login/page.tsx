@@ -3,12 +3,11 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import GithubSignInButton from "@/app/components/GithubSignInButton";
 import GoogleSignInButton from "@/app/components/GoogleSignInButton";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/utils/auth";
 import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 
 export default async function Login() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (session) {
     return redirect("/home");

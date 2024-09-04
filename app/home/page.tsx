@@ -1,7 +1,5 @@
 import MovieVideo from "../components/MovieVideo";
-import Navbar from "../components/Navbar";
 import RecentlyAdded from "../components/RecentlyAdded";
-import SeedDatabase from "../seed/page";
 
 export default function HomePage() {
   return (
@@ -9,7 +7,6 @@ export default function HomePage() {
       <MovieVideo />
       <h1 className="text-3xl font-bold ">Recently Added</h1>
       <RecentlyAdded />
-      {/* <SeedDatabase/> */}
     </div>
   );
 }

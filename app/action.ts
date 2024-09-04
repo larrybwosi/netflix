@@ -2,15 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "./utils/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./utils/auth";
+import { auth } from "@/lib/auth";
 
 export async function addTowatchlist(formData: FormData) {
   "use server";
 
   const movieId = formData.get("movieId");
   const pathname = formData.get("pathname") as string;
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   const data = await prisma.watchList.create({
     data: {
