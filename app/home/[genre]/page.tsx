@@ -1,10 +1,10 @@
 import { MovieCard } from "@/app/components/MovieCard";
-import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
-import { getServerSession } from "next-auth";
+import { auth } from "@/lib/auth";
 import Image from "next/image";
 
 async function getData(category: string, userId: string) {
+  'use server'
   switch (category) {
     case "shows": {
       const data = await prisma.movie.findMany({
@@ -88,7 +88,7 @@ export default async function CategoryPage({
 }: {
   params: { genre: string };
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const data = await getData(params.genre, session?.user?.email as string);
 
   return (

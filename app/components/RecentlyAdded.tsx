@@ -1,8 +1,7 @@
 import Image from "next/image";
 import prisma from "../utils/db";
 import { MovieCard } from "./MovieCard";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../utils/auth";
+import { auth } from "@/lib/auth";
 
 async function getData(userId: string) {
   const data = await prisma.movie.findMany({
@@ -31,7 +30,7 @@ async function getData(userId: string) {
 }
 
 export default async function RecentlyAdded() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const data = await getData(session?.user?.email as string);
 
   return (
