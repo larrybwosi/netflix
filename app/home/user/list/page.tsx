@@ -1,10 +1,10 @@
 import { MovieCard } from "@/app/components/MovieCard";
-import prisma from "@/app/utils/db";
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
 import Image from "next/image";
 
 async function getData(userId: string) {
-  const data = await prisma.watchList.findMany({
+  const data = await db.watchList.findMany({
     where: {
       userId: userId,
     },

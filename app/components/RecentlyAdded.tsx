@@ -1,10 +1,10 @@
 import Image from "next/image";
-import prisma from "../utils/db";
 import { MovieCard } from "./MovieCard";
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
 
 async function getData(userId: string) {
-  const data = await prisma.movie.findMany({
+  const data = await db.movie.findMany({
     select: {
       id: true,
       overview: true,

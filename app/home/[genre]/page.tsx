@@ -1,13 +1,13 @@
 import { MovieCard } from "@/app/components/MovieCard";
-import prisma from "@/app/utils/db";
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
 import Image from "next/image";
 
 async function getData(category: string, userId: string) {
   'use server'
   switch (category) {
     case "shows": {
-      const data = await prisma.movie.findMany({
+      const data = await db.movie.findMany({
         where: {
           category: "show",
         },
@@ -30,7 +30,7 @@ async function getData(category: string, userId: string) {
       return data;
     }
     case "movies": {
-      const data = await prisma.movie.findMany({
+      const data = await db.movie.findMany({
         where: {
           category: "movie",
         },
@@ -54,7 +54,7 @@ async function getData(category: string, userId: string) {
       return data;
     }
     case "recently": {
-      const data = await prisma.movie.findMany({
+      const data = await db.movie.findMany({
         where: {
           category: "recent",
         },
